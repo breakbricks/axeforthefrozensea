@@ -1,41 +1,24 @@
-import React from 'react';
-import { Box, Grommet } from 'grommet';
-
-// grommet theme declaration
-const theme = {
-  global: {
-    colors: {
-      brand: '#228BE6',
-    },
-    font: {
-      family: 'Roboto',
-      size: '18px',
-      height: '20px',
-    },
-  },
-};
-
-const AppBar = (props) => (
-  <Box
-    tag='header'
-    direction='row'
-    align='center'
-    justify='between'
-    background='brand'
-    pad={{ left: 'medium', right: 'small', vertical: 'small' }}
-    elevation='medium'
-    style={{ zIndex: '1' }}
-    {...props}
-  />
-);
+import React, { Fragment } from 'react';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Navbar } from './components/Navbar'
+import { Search } from './pages/Search'
+import { Saved } from './pages/Saved'
 
 
-function App() {
+
+
+export const App = () => {
   return (
-    <Grommet theme={theme}>
-      <AppBar>axe for the frozen sea</AppBar>
-    </Grommet>
-  );
+    <Fragment>
+      <Navbar />
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Search} />
+          <Route exact path="/saved" component={Saved} />
+        </Switch>
+      </Router>
+    </Fragment>
+  )
 }
 
-export default App;
+
