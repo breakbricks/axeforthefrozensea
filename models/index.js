@@ -1,1 +1,3 @@
-export const Book = require("./book");
+module.exports = {
+    Axe: require("./axe")
+};
