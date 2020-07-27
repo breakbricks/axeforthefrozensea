@@ -3,6 +3,7 @@ import { Grommet, Box, Grid, Button, Form, FormField, TextInput, defaultProps } 
 import { Graphic } from "../components/Graphic";
 import { BookCard } from "../components/BookCard";
 //import { Searchbar } from "../components/Searchbar";
+import { Savebtn } from "../components/Buttons";
 import API from "../utils/API";
 
 const thema = {
@@ -21,6 +22,7 @@ export const Search = () => {
 
     const [search, setSearch] = useState()
     const [results, setResults] = useState([])
+    const [saved, setSaved] = useState()
 
     const handleSearch = (event) => {
         event.preventDefault();
@@ -38,6 +40,12 @@ export const Search = () => {
                 setResults(resArray);
             })
             .catch(err => console.log(err));
+    }
+
+    const handleSave = (axe) => {
+        console.log(axe);
+        API.saveAxe(axe);
+        console.log("saved");
     }
 
     console.log(results);
@@ -95,10 +103,20 @@ export const Search = () => {
                                     title={axe.title}
                                     author={axe.authors[0]}
                                     description={axe.description}
-                                    img={axe.imageLinks.thumbnail}
+                                    img={axe.imageLinks.thumbnail ? axe.imageLinks.thumbnail : ""}
                                     link={axe.previewLink}
-                                    action='save'
-                                />
+                                    label="save"
+                                >
+                                    <Savebtn onClick={() => handleSave({
+                                        isbn: axe.industryIdentifiers[0].identifier,
+                                        title: axe.title,
+                                        authors: axe.authors[0],
+                                        description: axe.description,
+                                        image: axe.imageLinks.thumbnail,
+                                        link: axe.previewLink
+                                    })} />
+
+                                </BookCard>
                             ))}
                         </Grid>
                     </Box>

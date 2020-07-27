@@ -7,10 +7,11 @@ const axeSchema = new Schema({
     description: String,
     image: String,
     link: String,
-    publishedDate: String,
+    //publishedDate: String,
+    //publisher: String,
     //price: Schema.Types.Decimal128,
     //buyLink: String,
-    gid: String
+    isbn: String
 });
 
 const Axe = mongoose.model("Axe", axeSchema);

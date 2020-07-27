@@ -14,15 +14,16 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Add routes, both API and view
-// app.use(routes);
+app.use(routes);
 
 //test
-app.get("/", (req, res) => {
+/*app.get("/", (req, res) => {
     res.json({ message: "hello, world!" });
-})
+})*/
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/axesearch");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/axesearch", { useNewUrlParser: true, useUnifiedTopology: true },
+    () => console.log("Connected to the the DB!"));
 
 /*
 const MongoClient = require('mongodb').MongoClient;

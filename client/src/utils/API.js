@@ -16,15 +16,15 @@ export default {
     },
     // get all saved from database
     getSaved: function () {
-        return axios.get("/api/axes");
+        return axios.get("/api/axes/");
     },
     // get one from database
     getOneSaved: function (id) {
-        return axios.get("/api/axes" + id);
+        return axios.get("/api/axes/" + id);
     },
     // delete book from database
     deleteAxe: function (id) {
-        return axios.delete("/api/axes" + id);
+        return axios.delete("/api/axes/" + id);
     }
 
 }

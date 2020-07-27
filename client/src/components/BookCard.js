@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Image, Anchor, Button, Grommet, Text, Layer } from 'grommet';
-import { Add, Close } from 'grommet-icons';
+import { Close } from 'grommet-icons';
+import API from '../utils/API';
 
 const thema = {
     global: {
@@ -14,9 +15,21 @@ const thema = {
     },
 };
 
+/*<Button size="small" color="brand" label={props.action} onClick={() => { }}
+
+onClick={handleSave({
+                                        isbn: axe.industryIdentifiers[0].identifier,
+                                        title: axe.title,
+                                        authors: axe.authors[0],
+                                        description: axe.description,
+                                        image: axe.imageLinks.thumbnail,
+                                        link: axe.previewLink
+                                    })} */
+
 export const BookCard = (props) => {
 
     const [open, setOpen] = useState(false);
+
 
     const onOpen = () => setOpen(true);
     const onClose = () => setOpen(undefined);
@@ -33,7 +46,7 @@ export const BookCard = (props) => {
                 <br></br>
                 <Text>{props.title}</Text>
                 <em>{props.author}</em>
-                <Anchor href={props.link} label="Link" />
+                <Anchor href={props.link} label="Link" target="_blank" />
                 <br></br>
                 <Box direction="row" align="center" justify="center" gap="xsmall">
                     <Button size="small" color="light-2" label="info" onClick={onOpen} />
@@ -66,7 +79,7 @@ export const BookCard = (props) => {
                             </Layer>
                         )
                     }
-                    <Button size="small" color="brand" label={props.action} onClick={() => { }} />
+                    {props.children}
                 </Box>
             </Box>
 
