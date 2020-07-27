@@ -28,3 +28,10 @@
         </Layer>
     )
 }
+
+key = { axe.industryIdentifiers[0].identifier }
+title = { axe.title }
+author = { axe.authors === undefined ? "" : `${axe.authors[0]}` }
+description = { axe.description }
+img = { axe.imageLinks === undefined ? "" : `${axe.imageLinks.thumbnail}` }
+link = { axe.previewLink }

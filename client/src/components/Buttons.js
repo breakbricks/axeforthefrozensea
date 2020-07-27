@@ -15,10 +15,19 @@ const thema = {
 };
 
 export const Savebtn = (props) => {
+
     return (
         <Grommet theme={thema}>
-            <Button size="small" color="brand" label="save" onClick={props.onClick} />
+            <Button size="small" color="brand" label="save" onClick={props.onClick}
+                primary />
         </Grommet>
     )
 }
 
+export const Deletebtn = (props) => {
+    return (
+        <Grommet theme={thema}>
+            <Button size="small" color="brand" label="delete" onClick={props.onClick} />
+        </Grommet>
+    )
+}

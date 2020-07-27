@@ -15,17 +15,6 @@ const thema = {
     },
 };
 
-/*<Button size="small" color="brand" label={props.action} onClick={() => { }}
-
-onClick={handleSave({
-                                        isbn: axe.industryIdentifiers[0].identifier,
-                                        title: axe.title,
-                                        authors: axe.authors[0],
-                                        description: axe.description,
-                                        image: axe.imageLinks.thumbnail,
-                                        link: axe.previewLink
-                                    })} */
-
 export const BookCard = (props) => {
 
     const [open, setOpen] = useState(false);

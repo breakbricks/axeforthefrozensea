@@ -1,8 +1,8 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { Grommet, Box, Grid, Button, Form, FormField, TextInput, defaultProps } from 'grommet';
+import { Grommet, Box, Grid, Button, Form, FormField, TextInput, Layer, Text } from 'grommet';
+import { FormClose, StatusGood } from 'grommet-icons';
 import { Graphic } from "../components/Graphic";
 import { BookCard } from "../components/BookCard";
-//import { Searchbar } from "../components/Searchbar";
 import { Savebtn } from "../components/Buttons";
 import API from "../utils/API";
 
@@ -20,9 +20,12 @@ const thema = {
 
 export const Search = () => {
 
+    const [open, setOpen] = useState();
+    const onOpen = () => setOpen(true);
+    const onClose = () => setOpen(undefined);
+
     const [search, setSearch] = useState()
     const [results, setResults] = useState([])
-    const [saved, setSaved] = useState()
 
     const handleSearch = (event) => {
         event.preventDefault();
@@ -101,25 +104,59 @@ export const Search = () => {
                                 <BookCard
                                     key={axe.industryIdentifiers[0].identifier}
                                     title={axe.title}
-                                    author={axe.authors[0]}
+                                    author={axe.authors === undefined ? "" : `${axe.authors[0]}`}
                                     description={axe.description}
-                                    img={axe.imageLinks.thumbnail ? axe.imageLinks.thumbnail : ""}
+                                    img={axe.imageLinks === undefined ? "" : `${axe.imageLinks.thumbnail}`}
                                     link={axe.previewLink}
-                                    label="save"
                                 >
-                                    <Savebtn onClick={() => handleSave({
-                                        isbn: axe.industryIdentifiers[0].identifier,
-                                        title: axe.title,
-                                        authors: axe.authors[0],
-                                        description: axe.description,
-                                        image: axe.imageLinks.thumbnail,
-                                        link: axe.previewLink
-                                    })} />
+                                    <Savebtn onClick={() => {
+                                        handleSave({
+                                            isbn: axe.industryIdentifiers[0].identifier,
+                                            title: axe.title,
+                                            authors: axe.authors[0],
+                                            description: axe.description,
+                                            image: axe.imageLinks.thumbnail,
+                                            link: axe.previewLink
+                                        })
+                                            ; onOpen()
+                                    }} />
 
                                 </BookCard>
-                            ))}
+                            ))
+                            }
+
+
                         </Grid>
                     </Box>
+
+                    {open && (
+                        <Layer
+                            position="bottom"
+                            modal={false}
+                            margin={{ vertical: 'medium', horizontal: 'small' }}
+                            onEsc={onClose}
+                            responsive={false}
+                            plain
+                        >
+                            <Box
+                                align="center"
+                                direction="row"
+                                gap="small"
+                                justify="between"
+                                round="medium"
+                                elevation="medium"
+                                pad={{ vertical: 'xsmall', horizontal: 'small' }}
+                                background="#7fbbca"
+                            >
+                                <Box align="center" direction="row" gap="xsmall">
+                                    <StatusGood />
+                                    <Text>Saved</Text>
+                                </Box>
+                                <Button icon={<FormClose />} onClick={onClose} plain />
+                            </Box>
+                        </Layer>
+                    )
+                    }
                 </Box >
             </Grid >
         </Grommet >

@@ -1,6 +1,8 @@
-import React, { Fragment, useState } from 'react';
-import { Grommet, Box, Grid, defaultProps } from 'grommet';
-import { BookCard } from '../components/BookCard'
+import React, { Fragment, useState, useEffect } from 'react';
+import { Grommet, Box, Grid, Layer, Text, Button } from 'grommet';
+import { BookCard } from '../components/BookCard';
+import { Deletebtn } from '../components/Buttons';
+import API from '../utils/API';
 
 const thema = {
     global: {
@@ -15,10 +17,26 @@ const thema = {
 };
 export const Saved = (props) => {
 
-    const [saved, setSaved] = useState();
+    const [saved, setSaved] = useState([]);
 
-    //
+    useEffect(() => {
+        API.getSaved()
+            .then((res) => {
+                setSaved(res.data);
+            });
+    }, [])
 
+    console.log(saved);
+
+    const removeAxe = (id) => {
+        API.deleteAxe(id)
+            .then((res) => {
+                console.log(res.data)
+                console.log("deleted")
+            })
+            .catch(err => console.log(err));
+        window.location.reload();
+    }
 
     return (
         <Grommet full theme={thema}>
@@ -37,12 +55,26 @@ export const Saved = (props) => {
                 <Box gridArea="main">
                     <Box pad="large">
                         <Grid gap="xxsmall" rows="medium" columns={{ count: 'fit', size: 'small' }}>
-                            <BookCard>
-                                {props.children}
-                            </BookCard>
+
+                            {saved.map((axe) => (
+                                <BookCard
+                                    key={axe.isbn}
+                                    title={axe.title}
+                                    author={axe.authors}
+                                    description={axe.description}
+                                    img={axe.image ? axe.image : ""}
+                                    link={axe.link}
+                                >
+                                    <Deletebtn onClick={() =>
+                                        removeAxe(axe._id)
+                                    } />
+                                </BookCard>
+                            ))}
                         </Grid>
                     </Box>
                 </Box>
+
+
 
             </Grid >
         </Grommet >

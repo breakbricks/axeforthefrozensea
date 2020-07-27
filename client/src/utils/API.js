@@ -6,7 +6,7 @@ export default {
     // google books api - search term
     searchAxe: function (search) {
         return axios.get(
-            `https://www.googleapis.com/books/v1/volumes?q=${search}
+            `https://www.googleapis.com/books/v1/volumes?q=${search}&max-results=40
             `
         )
     },
@@ -17,10 +17,6 @@ export default {
     // get all saved from database
     getSaved: function () {
         return axios.get("/api/axes/");
-    },
-    // get one from database
-    getOneSaved: function (id) {
-        return axios.get("/api/axes/" + id);
     },
     // delete book from database
     deleteAxe: function (id) {
