@@ -33,8 +33,8 @@ export const Navbar = () => {
                         responsive === 'small' ? (
                             <Menu
                                 items={[
-                                    { label: 'search', onClick: () => { } },
-                                    { label: 'saved', onClick: () => { } },
+                                    { label: 'search', onClick: () => { "/" } },
+                                    { label: 'saved', onClick: () => { "/saved" } },
                                 ]}
                             />
                         ) : (
