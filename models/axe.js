@@ -8,8 +8,8 @@ const axeSchema = new Schema({
     image: String,
     link: String,
     publishedDate: String,
-    price: Schema.Types.Decimal128,
-    buyLink: String,
+    //price: Schema.Types.Decimal128,
+    //buyLink: String,
     gid: String
 });
 

@@ -4,9 +4,9 @@ import axios from "axios";
 
 export default {
     // google books api - search term
-    searchAxe: function (searchterm) {
+    searchAxe: function (search) {
         return axios.get(
-            `https://www.googleapis.com/books/v1/volumes?q=${searchterm}
+            `https://www.googleapis.com/books/v1/volumes?q=${search}
             `
         )
     },

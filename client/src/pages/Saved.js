@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { Grommet, Box, Grid, defaultProps } from 'grommet';
-import { SavedBook } from '../components/SavedBook'
+import { BookCard } from '../components/BookCard'
 
 const thema = {
     global: {
@@ -16,6 +16,8 @@ const thema = {
 export const Saved = (props) => {
 
     const [saved, setSaved] = useState();
+
+    //
 
 
     return (
@@ -35,9 +37,9 @@ export const Saved = (props) => {
                 <Box gridArea="main">
                     <Box pad="large">
                         <Grid gap="xxsmall" rows="medium" columns={{ count: 'fit', size: 'small' }}>
-                            <SavedBook>
+                            <BookCard>
                                 {props.children}
-                            </SavedBook>
+                            </BookCard>
                         </Grid>
                     </Box>
                 </Box>
