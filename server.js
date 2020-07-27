@@ -22,7 +22,14 @@ app.use(routes);
 })*/
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/axesearch", { useNewUrlParser: true, useUnifiedTopology: true },
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/axesearch",
+    {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true,
+        useFindAndModify: false,
+        family: 4 // Use IPv4, skip trying IPv6
+    },
     () => console.log("Connected to the the DB!"));
 
 /*
